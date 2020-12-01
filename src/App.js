@@ -1,25 +1,33 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import { Button } from 'semantic-ui-react';
+import Data from './Data';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const seededData = ['a','b','c']
+const newElement = 'd'
+
+class App extends React.Component {
+  state = {
+    seeds: seededData
+  }
+
+  create = newSeed => {
+    this.setState({seeds: [...this.state.seeds], newSeed})
+  }
+
+  addNewElement() {
+    // this.setState({seeds: [...this.state.seeds], newElement})
+    // console.log(this.state.seeds)
+  }
+
+  render() {
+    return (
+      <div className="App">
+        {this.state.seeds.map(seed => <Data seed={seed} create={this.create}/> )}
+        <Button onClick={this.addNewElement}>Click Me</Button>
+      </div>
+    );
+  }
 }
 
 export default App;
