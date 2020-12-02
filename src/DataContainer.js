@@ -7,7 +7,7 @@ class DataContainer extends React.Component {
         return (  
             <div>
                 <h1>DATA CONTAINER</h1>
-                {this.props.seeds.map(seed => <Data seed={seed}/> )}
+                    {this.props.seeds.map(seed => <Data seed={seed}/> )}
             </div>
         );
     }

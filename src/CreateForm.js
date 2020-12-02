@@ -1,33 +1,30 @@
 import React from 'react';
-import { Button, Checkbox, Form } from 'semantic-ui-react';
 
 class CreateForm extends React.Component {
     state = {  
-
+        newElement: ''
     }
+
+    handleChange = e => {
+        this.setState({[e.target.name]: e.target.value})
+    }
+
+    handleSubmit = e => {
+        e.preventDefault()
+        let newElement = this.state.newElement
+        this.props.addNewElement(newElement)
+        this.setState({newElement: ''})
+    }
+
     render() { 
         return (  
             <div>
                 <h1>CREATE FORM</h1>
-                <Form>
-                
-                    <Form.Field>
-                        <label>First Name</label>
-                        <input placeholder='First Name' />
-                    </Form.Field>
-                
-                    <Form.Field>
-                        <label>Last Name</label>
-                        <input placeholder='Last Name' />
-                    </Form.Field>
-                
-                    <Form.Field>
-                        <Checkbox label='I agree to the Terms and Conditions' />
-                    </Form.Field>
-    
-                    <Button type='submit'>Submit</Button>
-  
-                </Form>
+                <form className="new-element-form" onSubmit={this.handleSubmit}>
+                    <input placeholder="New Element" name="newElement" value={this.state.newElement} onChange={this.handleChange} style={{width: '250px'}} />
+                    <br></br>
+                    <input className="ui button green inverted" style={{width: '250px'}} type="submit" value="Add" />
+                </form>
             </div>
         );
     }

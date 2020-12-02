@@ -11,15 +11,19 @@ class App extends React.Component {
     seeds: seededData
   }
 
-  create = newSeed => {
-    this.setState({seeds: [...this.state.seeds, newSeed]}, () => console.log(this.state.seeds))
+  addNewElement = newElement => {
+    console.log('OLD ARRAY:', this.state.seeds)
+    this.setState({seeds: [...this.state.seeds, newElement]})
   }
 
   render() {
+    console.log('UPDATED ARRAY:', this.state.seeds)
+
     return (
       <div>
-        <DataContainer seeds={this.state.seeds}/>
-        <CreateForm />
+        <CreateForm addNewElement={this.addNewElement} />
+        <br></br>
+        <DataContainer seeds={this.state.seeds} />
       </div>
     );
   }
